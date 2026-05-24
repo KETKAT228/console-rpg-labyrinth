@@ -54,8 +54,8 @@ anti_cheat3 = random.choice(random_room)
 
 while True:
     room_input = input("куда пойдёшь: ").lower().strip()
-    if room == anti_cheat1:
-        if  room_input == anti_cheat:
+    if room == 1:
+        if  room_input == anti_cheat1:
             room = 2
             print("ты во второй комнате. ты видишь два пути (влево, вправо) ")
         else:
