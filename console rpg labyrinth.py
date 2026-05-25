@@ -98,7 +98,7 @@ while True:
                             print("гоблин уклонился")
                         else:
                             Crete = random.randint(1,50)
-                            if Crete == 30:
+                            if Crete == 30 and stats_player["AP"] == 100:
                                 print("вы нанесли критический удар на 100 урона!")
                                 monster_HP -= 100
                                 stats_player["AP"] -= 100
@@ -106,8 +106,7 @@ while True:
                                 hit = random.randint(10,50)
                                 print(f"вы нанесли {hit} урона")
                                 stats_player["AP"] -= 40
-                        
-                        print(f"Ты заблокировал часть урона! Вам нанесли: {hit_sum} урона")
+                                
                     else:
                         print("Не хватает AP для удара! Ты промахнулся.")
                         monster_hit = random.randint(10, 30)
@@ -158,6 +157,13 @@ while True:
                     recovery_AP = random.randint(10,40)
                     stats_player["AP"] = min(100, stats_player["AP"] + recovery_AP)
                     print(f"число вне диапозона монстр нанёс вам {monster_hit} урона | когда вы думали что сделать но вы востановили себе AP: {recovery_AP}")
+                if monster_HP <= 0:
+                    print("вы победили!")
+                    break
+                if stats_player["HP"] <= 0:
+                    print("вы умерли")
+                    count_ded = 1
+                    break
             if count_ded == 1:
                 break
             print("Ты видишь тупик, но на полу лежит ключ!")
