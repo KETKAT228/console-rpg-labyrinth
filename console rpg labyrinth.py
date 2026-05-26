@@ -1,8 +1,13 @@
 import random
 import os
 import time
+import sys
+import keyboard
+
 def show_logo():
-    print("""разработчики:
+    print("""
+Esc для пропуска
+разработчики:
 ██╗░░██╗███████╗████████╗░░░░░░░░░██╗░░██╗░█████╗░████████╗
 ██║░██╔╝██╔════╝╚══██╔══╝░░░░░░░░░██║░██╔╝██╔══██╗╚══██╔══╝
 █████╔╝░█████╗░░░░░██║░░░░░░░░░░░░█████╔╝░███████║░░░██║░░░
@@ -15,25 +20,28 @@ def clear_screen_with_logo():
     os.system("cls")  
     show_logo()
 
+show_logo()
 
+spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧"]
 
-show_logo() 
+skip_loading = False
 
-while True:
-    print("\rЗапуск программы...", end="")
-    time.sleep(0.3)
+for _ in range(15):
+    for s in spinner:
+        if keyboard.is_pressed('esc'):
+            skip_loading = True
+            break
+        
+        sys.stdout.write(f"\r {s} Загрузка {s} ")
+        sys.stdout.flush()
+        time.sleep(0.05)
+        
+    if skip_loading: 
+        break
 
-    print("\rЗапуск программы.. ", end="") 
-    time.sleep(0.5)
-
-    print("\rЗапуск программы.  ", end="")
-    time.sleep(1)
-
-    print("\rКонец запуска программы")
-    time.sleep(0.5)
-
-    clear_screen_with_logo() 
-    break
+print("\n\nГОТОВО!!!")
+time.sleep(0.5)
+os.system("cls")
 
 room = 1
 key = False
